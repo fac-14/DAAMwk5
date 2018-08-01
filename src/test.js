@@ -3,9 +3,9 @@ const supertest = require("supertest");
 const router = require("./routes");
 
 test("initialise test", (t) => {
-    const x = 5;
-    t.equal(x, 5, "Checking that test module running correctly. Both answers should be 5")
-    t.end()
+  const x = 5;
+  t.equal(x, 5, "Checking that test module running correctly. Both answers should be 5");
+  t.end();
 });
 
 test("home route returns status 200 and an html doc", (t) => {
@@ -19,3 +19,4 @@ test("home route returns status 200 and an html doc", (t) => {
         t.end();
     })
 });
+

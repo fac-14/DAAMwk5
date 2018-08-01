@@ -6,13 +6,31 @@
 */
 
 function xhr(method, url, callback) {
-  console.log('Testing API CALL');
-  const request = new XMLHttpRequest();
-  request.open(method, url, true);
-  request.onreadystatechange = () => {
-    if (request.readyState === 4 && request.status === 200) {
-      callback(JSON.parse(request.responseText));
+  if (typeof callback === 'function') {
+    const request = new XMLHttpRequest();
+    request.open(method, url, true);
+    request.onreadystatechange = () => {
+      if (request.readyState === 4 && request.status === 200) {
+        callback(JSON.parse(request.responseText));
+      }
+    };
+    request.send(null);
+  }
+}
+
+/*
+* geoLocate
+* Checks for geolocation support and returns a callback function if true
+* Returns: callback(latitude, longitude)
+*/
+function geoLocate(callback) {
+  if (typeof callback === 'function') {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        callback(position.coords.latitude, position.coords.longitude);
+      });
+    } else {
+      console.log('geolocation is NOT available');
     }
-  };
-  request.send(null);
+  }
 }

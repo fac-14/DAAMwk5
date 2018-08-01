@@ -7,4 +7,5 @@ const server = http.createServer();
 
 server.listen(port, host, () => {
     console.log(`server running on ${host} at ${port}`)
-})
+});
+

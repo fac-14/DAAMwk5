@@ -18,10 +18,9 @@
   },
   "homepage": "https://github.com/fac-14/DAAMwk5#readme",
   "devDependencies": {
+    "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0"
   },
-  "dependencies": {
-    "eslint": "^4.19.1"
-  }
+  "dependencies": {}
 }

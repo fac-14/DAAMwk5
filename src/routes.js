@@ -7,6 +7,8 @@ const router = (req, res) => {
     handler.publicHandler(req, res);
   } else if (req.url.includes("/coords/")) {
     handler.coordsHandler(req, res);
+  } else if (req.url.includes("/postcode/")) {
+    handler.postcodeHandler(req, res);
   } else {
     // handler.publicHandler(req, res);
     res.writeHead(404, "Content-Type: text/html")

@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const mime = require("mime-types");
+const request = require("request");
 const buildPath = function(myPath) {
   return path.join(__dirname, "..", "public", myPath);
 };

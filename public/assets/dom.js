@@ -32,7 +32,7 @@ geoLoc.addEventListener('click', (event) => {
     const totalCount = Object.values(testObj.crimes).reduce((a, b) => a + b);
     p.textContent = `Oh no! There's been ${totalCount} crimes in that location!`;
     display.appendChild(p);
-    console.log(Object.keys(testObj.streets));
+    console.log(Object.keys(testObj.streets);
   });
 });
 

@@ -3,7 +3,14 @@ const postcodeLoc = document.querySelector('.postcodeButton');
 const input = document.querySelector('#input_postcode');
 const display = document.querySelector('#display');
 
+function clearList(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+
 function incidentReport(testObj) {
+  clearList(display);
   const p = document.createElement('p');
   const totalCount = Object.values(testObj.crimes).reduce((a, b) => a + b);
   p.textContent = `🚨👮 Oh no! There's been ${totalCount} crimes in that location! 👮🚨`;
@@ -42,7 +49,7 @@ geoLoc.addEventListener('click', (event) => {
       console.log(geolocationData);
     });
     // TODO - put back in XHR for when it works
-    incidentReport(geolocationData);
+    incidentReport(testObj);
   });
 });
 

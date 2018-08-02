@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+
+
 body {
     background-color: whitesmoke;
     display: flex;
@@ -5,6 +9,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    font-family: 'Oswald', sans-serif;
+
 }
 
 form {
@@ -24,4 +30,14 @@ form input {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+} 
+
+
+ul {
+    background: rgb(14, 31, 14);
+}
+
+li {
+    list-style: none;
+    text-align: center;
 }

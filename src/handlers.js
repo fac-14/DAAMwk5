@@ -23,10 +23,10 @@ const handler = {
   publicHandler: function(request, response) {
     fs.readFile(buildPath(request.url), function(error, file) {
       if (error) {
-        response.writeHead(404, { "Content-type": "text/plain" });
+        response.writeHead(500, { "Content-type": "text/plain" });
         response.end("server error");
-        // console.log(error);
-        // return;
+        console.log(error);
+        return;
       }
       response.writeHead(200, {"Content-Type": mime.lookup(request.url)});
       response.end(file);

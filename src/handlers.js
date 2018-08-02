@@ -63,6 +63,7 @@ const handler = {
       console.log(
         `lat: ${body.result.latitude}, long: ${body.result.longitude}`,
       );
+        handler.policeRequest(body.result.latitude, body.result.longitude);
     });
 
     // PLACEHOLDER
@@ -76,6 +77,13 @@ const handler = {
     // get results from police
     // send object of some sorts to client
   },
+  policeRequest(latitude, longitude) {
+    requestPkg(`https://data.police.uk/api/crimes-street/all-crime?lat=${latitude}&lng=${longitude}`, function(error, response, body) {
+      console.log(`your error is: ${error}`);
+      const policeData = JSON.parse(body);
+      console.log(policeData);
+    })
+},
 };
 
 module.exports = handler;

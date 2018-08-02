@@ -38,6 +38,7 @@ const handler = {
     const lat = latlong.split('&long=')[0].split('=')[1];
     const long = latlong.split('&long=')[1];
     console.log(`lat ${lat} long ${long}`);
+    handler.policeRequest(lat, long);
     response.writeHead(302, { 'Content-Type': 'text/plain' });
     response.end();
 

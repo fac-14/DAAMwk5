@@ -27,13 +27,12 @@ geoLoc.addEventListener('click', (event) => {
       console.log(geolocationData);
     });
     // TODO - put back in XHR for when it works
+
     const p = document.createElement('p');
-    //  console.log(testObj.crimes.arson);
-    const count = Object.values(testObj.crimes).reduce((a, b) => a + b);
-
-
-    p.textContent = `Oh no! There's been ${count} crimes in that location!`;
+    const totalCount = Object.values(testObj.crimes).reduce((a, b) => a + b);
+    p.textContent = `Oh no! There's been ${totalCount} crimes in that location!`;
     display.appendChild(p);
+    console.log(Object.keys(testObj.streets));
   });
 });
 

@@ -28,11 +28,10 @@ geoLoc.addEventListener('click', (event) => {
     });
     // TODO - put back in XHR for when it works
     const p = document.createElement('p');
-    count = 0;
-    console.log(testObj.crimes.arson);
-    for (const x in testObj.crimes) {
-      console.log(testObj.crimes[x]);
-    }
+    //  console.log(testObj.crimes.arson);
+    const count = Object.values(testObj.crimes).reduce((a, b) => a + b);
+
+
     p.textContent = `Oh no! There's been ${count} crimes in that location!`;
     display.appendChild(p);
   });

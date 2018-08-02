@@ -27,6 +27,7 @@
     "tape": "^4.9.1"
   },
   "dependencies": {
-    "mime-types": "^2.1.19"
+    "mime-types": "^2.1.19",
+    "request": "^2.87.0"
   }
 }

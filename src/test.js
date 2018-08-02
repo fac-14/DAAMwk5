@@ -20,3 +20,13 @@ test("home route returns status 200 and an html doc", (t) => {
     })
 });
 
+test("Inccorect file path returns 404", (t) => {
+    supertest(router)
+    .get("/birds")
+    .expect(404)
+    .end((err,res) => {
+        t.error(err, "Correct error");
+        t.equal(res.statusCode, 404, "Should return 404")
+        t.end();
+    });
+});

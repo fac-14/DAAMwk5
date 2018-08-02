@@ -21,10 +21,9 @@ const handler = {
     });
   },
   publicHandler: function(request, response) {
-      console.log("running publicHandler")
     fs.readFile(buildPath(request.url), function(error, file) {
       if (error) {
-        response.writeHead(500, { "Content-type": "text/plain" });
+        response.writeHead(404, { "Content-type": "text/plain" });
         response.end("server error");
         // console.log(error);
         // return;

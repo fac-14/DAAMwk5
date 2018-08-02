@@ -1,6 +1,7 @@
 body {
     background-color: whitesmoke;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -16,4 +17,11 @@ form {
 
 form input {
     min-width: 400px;
+}
+
+#display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }

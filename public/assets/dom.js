@@ -3,6 +3,21 @@ const postcodeLoc = document.querySelector('.postcodeButton');
 const input = document.querySelector('#input_postcode');
 const display = document.querySelector('#display');
 
+function incidentReport(testObj) {
+  const p = document.createElement('p');
+  const totalCount = Object.values(testObj.crimes).reduce((a, b) => a + b);
+  p.textContent = `🚨👮 Oh no! There's been ${totalCount} crimes in that location! 👮🚨`;
+  display.appendChild(p);
+  const ul = document.createElement('ul');
+  const streetNames = Object.keys(testObj.streets);
+  streetNames.map((street) => {
+    const li = document.createElement('li');
+    li.textContent += `${street}: ${testObj.streets[street]} incidents`;
+    ul.appendChild(li);
+  });
+  display.appendChild(ul);
+}
+
 const testObj = {
   crimes: {
     burglary: 300,
@@ -27,12 +42,7 @@ geoLoc.addEventListener('click', (event) => {
       console.log(geolocationData);
     });
     // TODO - put back in XHR for when it works
-
-    const p = document.createElement('p');
-    const totalCount = Object.values(testObj.crimes).reduce((a, b) => a + b);
-    p.textContent = `Oh no! There's been ${totalCount} crimes in that location!`;
-    display.appendChild(p);
-    console.log(Object.keys(testObj.streets));
+    incidentReport(geolocationData);
   });
 });
 
@@ -46,4 +56,5 @@ postcodeLoc.addEventListener('click', (event) => {
     // ADD POSTCODE FORMATTING/DISPLAY CODE HERE :D
     console.log(postcodeData);
   });
+  incidentReport(testObj);
 });

@@ -5,6 +5,8 @@ const router = (req, res) => {
     handler.home(req, res);
   } else if (req.url.includes('assets')) {
     handler.publicHandler(req, res);
+  } else if (req.url.includes("/coords/")) {
+    handler.coordsHandler(req, res);
   } else {
     // handler.publicHandler(req, res);
     res.writeHead(404, "Content-Type: text/html")

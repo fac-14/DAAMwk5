@@ -31,6 +31,14 @@ const handler = {
       response.writeHead(200, {"Content-Type": mime.lookup(request.url)});
       response.end(file);
     });
+  },
+  coordsHandler: function(request, response) {
+      // PLACEHOLDER
+      const latlong = request.url.split("coords/")[1]
+      const lat = latlong.split("&long=")[0].split("=")[1];)
+      const long = latlong.split("&long=")[1];
+      response.writeHead(302, {"Content-Type": "text/plain"});
+      response.end();
   }
 };
 

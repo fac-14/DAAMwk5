@@ -47,9 +47,9 @@ geoLoc.addEventListener('click', (event) => {
     const locString = `/coords/?lat=${latitude}&long=${longitude}`;
     xhr('GET', locString, (geolocationData) => {
       console.log(geolocationData);
+      incidentReport(geolocationData);
     });
     // TODO - put back in XHR for when it works
-    incidentReport(testObj);
   });
 });
 
@@ -62,6 +62,6 @@ postcodeLoc.addEventListener('click', (event) => {
   xhr('GET', postcodeString, (postcodeData) => {
     // ADD POSTCODE FORMATTING/DISPLAY CODE HERE :D
     console.log(postcodeData);
+    incidentReport(postcodeData);
   });
-  incidentReport(testObj);
 });

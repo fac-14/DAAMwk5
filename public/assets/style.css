@@ -3,7 +3,8 @@
 
 
 body {
-    background-color: whitesmoke;
+    background-color:#e5dcc5;
+    color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,11 +31,13 @@ form input {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-color: #e5dcc5;
+    color: black;
 } 
 
 
 ul {
-    background: rgb(14, 31, 14);
+    background: #e5dcc5;;
 }
 
 li {

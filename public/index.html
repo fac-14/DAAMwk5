@@ -10,10 +10,14 @@
 </head>
 
 <body>
+    <h1>Crime rates in your area</h1>
+    <br>
+    <br>
     <form>
-        <input aria-label="Enter Postcode" type="text" id="input_postcode" name="postcode">
-        <button aria-label="Search" class="postcodeButton">Search</button>
-        <button aria-label="Search by Geolocation" class="geoButton">Geolocation</button>
+        <label for="input_postcode"></label>
+        <input type="text" id="input_postcode" name="postcode" placeholder="Please enter a postcode">
+        <button class="postcodeButton">Search</button>
+        <button class="geoButton">Geolocation</button>
     </form>
     <div id="display"></div>
     <script src="assets/logic.js"></script>

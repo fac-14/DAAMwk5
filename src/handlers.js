@@ -38,53 +38,37 @@ const handler = {
     const lat = latlong.split('&long=')[0].split('=')[1];
     const long = latlong.split('&long=')[1];
     console.log(`lat ${lat} long ${long}`);
-    handler.policeRequest(lat, long);
-    response.writeHead(302, { 'Content-Type': 'text/plain' });
-    // response.end(handler.policeRequest(lat, long));
-    console.log('This is the object we need', handler.policeRequest(lat, long));
-    response.end();
+    const url = `https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${long}`;
+    requestPkg(url, (error, res, body) => {
+      const crimes = handler.responseCreator(body);
+      const crimesParsed = JSON.stringify(crimes);
+      response.writeHead(res.statusCode, { 'Content-Type': 'application/JSON' });
+      response.end(crimesParsed);
+    });
   },
   postcodeHandler(request, response) {
+    console.log('Running Postcode!');
     const decoded = decodeURI(request.url);
     const postcode = decoded.split('postcode/')[1].replace(/[^A-Za-z0-9]/, '');
-
-    // API request to get latitude and longitude from postcodes.io api
-    requestPkg(
-      `https://api.postcodes.io/postcodes/${postcode}`,
-      (error, response, body) => {
-        console.log(`error: ${error}`);
-        const statusCode = response.statusCode;
-        body = JSON.parse(body);
-        console.log(
-          `lat: ${body.result.latitude}, long: ${body.result.longitude}`,
-        );
-        handler.policeRequest(body.result.latitude, body.result.longitude);
-      },
-    );
-
-    // PLACEHOLDER
-    console.log(`postcode is ${postcode}`);
-    response.writeHead(302, { 'Content-Type': 'text/plain' });
-    response.end();
-
-    // NEXT STEPS:
-    // redirect user to home url,
-    // send request (using lat and long) to police API,
-    // get results from police
-    // send object of some sorts to client
+    requestPkg(`https://api.postcodes.io/postcodes/${postcode}`, (error, res, body) => {
+      body = JSON.parse(body);
+      const lat = body.result.latitude;
+      const long = body.result.longitude;
+      const url = `https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${long}`;
+      requestPkg(url, (error, res, body) => {
+        console.log('Postcode Recieved!');
+        const crimes = handler.responseCreator(body);
+        const crimesParsed = JSON.stringify(crimes);
+        response.writeHead(res.statusCode, { 'Content-Type': 'application/JSON' });
+        response.end(crimesParsed);
+      });
+    });
   },
-  policeRequest(latitude, longitude) {
-    requestPkg(
-      `https://data.police.uk/api/crimes-street/all-crime?lat=${latitude}&lng=${longitude}`,
-      (error, response, body) => {
-        console.log(`your error is: ${error}`);
-        const policeData = JSON.parse(body);
-        // console.log(handler.responseCreator(policeData));
-        handler.responseCreator(policeData);
-      },
-    );
+  crimeLookup(response, request, error, res, body) {
+
   },
   responseCreator(testArr) {
+    const parseArr = JSON.parse(testArr);
     // Object to send back to client
     const responseObj = {
       crimes: {},
@@ -92,8 +76,8 @@ const handler = {
     };
 
     // Extract crimes and streets from the large JSON response. Make street descriptions more concise with regex
-    const listOfCrimes = testArr.map(i => i.category);
-    const listOfStreets = testArr.map(i => i.location.street.name.replace('On or near ', ''));
+    const listOfCrimes = parseArr.map(i => i.category);
+    const listOfStreets = parseArr.map(i => i.location.street.name.replace('On or near ', ''));
 
     // Use callback to filter unique values from array
     function getUniqueValues(val, i, self) {

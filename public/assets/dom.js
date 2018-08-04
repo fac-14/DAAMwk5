@@ -13,7 +13,7 @@ function incidentReport(testObj) {
   clearList(display);
   const p = document.createElement('p');
   const totalCount = Object.values(testObj.crimes).reduce((a, b) => a + b);
-  p.textContent = `🚨👮 Oh no! There's been ${totalCount} crimes in that location! 👮🚨`;
+  p.textContent = `🚨👮 Oh no! There have been ${totalCount} crimes in that location! 👮🚨`;
   display.appendChild(p);
   const ul = document.createElement('ul');
   const streetNames = Object.keys(testObj.streets);
